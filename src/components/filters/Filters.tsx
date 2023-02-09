@@ -34,7 +34,6 @@ const Filters = () => {
 				setSearchParams(searchParams);
 			}
 		});
-		console.log('effect running');
 	};
 	return (
 		<Dialog.Root>
@@ -50,7 +49,7 @@ const Filters = () => {
 					</Dialog.Description>
 					<StyledFiltersContainer method='get'>
 						{Array.from(FILTER_PARAMETERS.entries()).map(
-							([filterMetaData, filters]: any) => (
+							([filterMetaData, filters]) => (
 								<FilterList
 									key={filterMetaData.filter}
 									filters={filters}

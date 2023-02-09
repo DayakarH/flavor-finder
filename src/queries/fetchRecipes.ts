@@ -24,7 +24,6 @@ const fetchRecipes = async (searchTerm: string, filters: string[][]) => {
 			indexes: null,
 		},
 	};
-	console.log(config);
 	try {
 		const res = await axios(config);
 		return res.data;

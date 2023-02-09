@@ -67,6 +67,7 @@ export type Recipe = {
 	];
 };
 
+export type Nutrients = Pick<Recipe, 'digest'>['digest'][0];
 export type RecipeResponse = {
 	recipe: Recipe;
 	_links: {

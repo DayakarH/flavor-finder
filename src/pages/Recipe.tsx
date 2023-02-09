@@ -9,9 +9,10 @@ import { formatChartData } from 'src/utils';
 
 const StyledRecipePage = styled.article``;
 const Recipe = () => {
-	const data = useLoaderData();
+	const data = useLoaderData() as Awaited<
+		ReturnType<ReturnType<typeof loadRecipe>>
+	>;
 	const navigate = useNavigate();
-	console.log(data);
 	const chartData = formatChartData(data.recipe.digest);
 	return (
 		<StyledRecipePage className='container'>
@@ -40,7 +41,6 @@ export const loadRecipe =
 		let name = url.searchParams.get('name') as string;
 
 		const query = RecipesQuery(id, name);
-		console.log(query);
 		return (
 			queryClient.getQueryData(query.queryKey) ??
 			(await queryClient.fetchQuery(query))

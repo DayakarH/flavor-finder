@@ -23,7 +23,12 @@ const StyledFilter = styled.li`
 		font-weight: 400;
 	}
 `;
-const Filter = ({ filter, type }) => {
+
+type Props = {
+	filter: string;
+	type: string;
+};
+const Filter = ({ filter, type }: Props) => {
 	const { setFilters } = useFilterActions();
 
 	const handleInputChange = (evt: ChangeEvent<HTMLInputElement>) => {
@@ -56,7 +61,12 @@ const StyledFiltersCategory = styled.div`
 	}
 `;
 
-const FilterList = ({ filters, title, filterType }) => {
+type FilterListProps = {
+	filters: string[];
+	title: string;
+	filterType: string;
+};
+const FilterList = ({ filters, title, filterType }: FilterListProps) => {
 	return (
 		<StyledFiltersCategory>
 			<h3>{title}</h3>

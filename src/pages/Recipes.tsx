@@ -24,7 +24,6 @@ const Recipes = () => {
 	const data = useLoaderData() as Awaited<
 		ReturnType<ReturnType<typeof loadRecipes>>
 	>;
-	console.log(data);
 	let [searchParams, setSearchParams] = useSearchParams();
 	const { updateTotalRecipes } = usePaginationActions();
 
@@ -42,7 +41,6 @@ const Recipes = () => {
 		setSearchParams(params);
 	}, [currentPage, userInput, data.count]);
 
-	console.log(searchParams.toString());
 	return (
 		<StyledRecipesPage className='container'>
 			<div className='flex'>

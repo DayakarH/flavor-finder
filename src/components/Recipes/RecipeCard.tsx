@@ -68,9 +68,6 @@ const StyledRecipeCard = styled.li`
 `;
 
 const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
-	const navigate = useNavigate();
-	const [, setSearchParams] = useSearchParams();
-
 	const id = recipe.uri.split('_')[1];
 	const formattedNutrients = recipe.digest.slice(0, 9).map(nutrient => ({
 		label: nutrient.label,
