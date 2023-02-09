@@ -48,10 +48,58 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+li {
 	overflow-wrap: break-word;
 }
 #root,
 #__next {
 	isolation: isolate;
+}
+
+:root {
+	--color-primary: hsl(355, 78%, 56%);
+	--site-background: #f8f5f2;
+	--powder-blue: #fffffe;
+	--celadon-blue: hsla(203, 39%, 44%, 1);
+	--prussian-blue: #e53170;
+	--heading-font: 'Cabinet Grotesk';
+	--text-font: 'Satoshi';
+	--shadow-color: 31deg 9% 54%;
+	--shadow-elevation-low: 0.3px 0.5px 0.6px hsl(var(--shadow-color) / 0.58),
+		0.4px 0.8px 0.9px -1.7px hsl(var(--shadow-color) / 0.47),
+		1.1px 2.2px 2.4px -3.5px hsl(var(--shadow-color) / 0.36);
+	--shadow-elevation-medium: 0.3px 0.5px 0.6px hsl(var(--shadow-color) / 0.61),
+		0.7px 1.4px 1.5px -1.2px hsl(var(--shadow-color) / 0.52),
+		2.1px 4.1px 4.5px -2.3px hsl(var(--shadow-color) / 0.44),
+		5.5px 11px 12px -3.5px hsl(var(--shadow-color) / 0.35);
+	--shadow-elevation-high: 0.3px 0.5px 0.6px hsl(var(--shadow-color) / 0.57),
+		1.2px 2.3px 2.5px -0.5px hsl(var(--shadow-color) / 0.53),
+		2.3px 4.6px 5px -1px hsl(var(--shadow-color) / 0.49),
+		4.2px 8.5px 9.2px -1.5px hsl(var(--shadow-color) / 0.44),
+		7.4px 14.9px 16.2px -2px hsl(var(--shadow-color) / 0.4),
+		12.5px 24.9px 27.2px -2.5px hsl(var(--shadow-color) / 0.36),
+		19.8px 39.6px 43.2px -3px hsl(var(--shadow-color) / 0.32),
+		30px 60px 65.4px -3.5px hsl(var(--shadow-color) / 0.28);
+}
+
+body {
+	background-color: var(--site-background);
+	font-family: var(--text-font, sans-serif);
+}
+
+.container {
+	width: 80%;
+	max-width: 1200px;
+	margin-inline: auto;
+}
+.visually-hidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
 }
