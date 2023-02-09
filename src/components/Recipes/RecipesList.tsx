@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Recipe, RecipeResponse } from 'src/types';
 import RecipeCard from './RecipeCard';
 
 const StyledRecipes = styled.ul`
@@ -8,7 +9,7 @@ const StyledRecipes = styled.ul`
 	gap: 1em;
 `;
 
-const RecipesList = ({ recipes }) => {
+const RecipesList = ({ recipes }: { recipes: RecipeResponse[] }) => {
 	return (
 		<StyledRecipes>
 			{recipes.map(({ recipe }, idx) => (

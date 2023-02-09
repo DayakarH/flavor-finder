@@ -4,8 +4,11 @@ import * as am5 from '@amcharts/amcharts5';
 import * as am5xy from '@amcharts/amcharts5/xy';
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 
-const NutritionChart = ({ data }) => {
-	console.log(data);
+type dataField = {
+	nutrient: string;
+	value: number;
+};
+const NutritionChart = ({ data }: { data: dataField[] }) => {
 	useLayoutEffect(() => {
 		let root = am5.Root.new('chartdiv');
 
@@ -75,11 +78,11 @@ const NutritionChart = ({ data }) => {
 			strokeOpacity: 0,
 		});
 		series.columns.template.adapters.add('fill', function (fill, target) {
-			return chart.get('colors').getIndex(series.columns.indexOf(target));
+			return chart.get('colors')?.getIndex(series.columns.indexOf(target));
 		});
 
 		series.columns.template.adapters.add('stroke', function (stroke, target) {
-			return chart.get('colors').getIndex(series.columns.indexOf(target));
+			return chart?.get('colors')?.getIndex(series.columns.indexOf(target));
 		});
 
 		xAxis.data.setAll(data);

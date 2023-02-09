@@ -6,6 +6,7 @@ import {
 	Link,
 	Form,
 } from 'react-router-dom';
+import { Recipe } from 'src/types';
 
 const StyledRecipeCard = styled.li`
 	background-color: #fffffe;
@@ -66,7 +67,7 @@ const StyledRecipeCard = styled.li`
 	}
 `;
 
-const RecipeCard = ({ recipe }) => {
+const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 	const navigate = useNavigate();
 	const [, setSearchParams] = useSearchParams();
 

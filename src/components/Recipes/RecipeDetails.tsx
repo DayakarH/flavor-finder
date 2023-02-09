@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { Recipe } from 'src/types';
 
 const StyledRecipeDetails = styled.div`
 	container-type: inline-size;
@@ -59,7 +60,7 @@ const StyledRecipeDetails = styled.div`
 	}
 `;
 
-const RecipeDetails = ({ recipe }) => {
+const RecipeDetails = ({ recipe }: { recipe: Recipe }) => {
 	const {
 		label,
 		images,
