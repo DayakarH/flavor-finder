@@ -24,18 +24,38 @@ const StyledMainLockup = styled(motion.main)`
 				display: flex;
 				flex-basis: 180px;
 				flex-shrink: 0;
+				position: relative;
 
 				& > input {
-					outline: none;
 					width: 100%;
-					background-color: transparent;
+					background: transparent;
 					border: none;
-					border-bottom: 1.5px solid var(--button-color-primary);
+					outline: none;
 
-					&:focus {
-						outline: 2px solid var(--color-primary);
-						outline-offset: 3px;
+					:focus {
+						outline: 2px auto red;
+						outline-offset: 5px;
 					}
+
+					&:focus:not(.focus-visible) {
+						outline: none;
+					}
+				}
+
+				& .animated__line {
+					position: absolute;
+					left: 0px;
+					right: 0px;
+					bottom: 0px;
+					pointer-events: none;
+					height: 3px;
+					border-radius: 2px;
+					background: red;
+					opacity: 0.6;
+					transition: transform 250ms;
+				}
+				&:has(input:focus) .animated__line {
+					transform: translateY(7px);
 				}
 			}
 			& button {
@@ -134,6 +154,7 @@ const Home = () => {
 								onChange={handleInputChange}
 								required
 							/>
+							<div className='animated__line'></div>
 						</div>
 						<button>Show me Recipes</button>
 					</Form>
