@@ -4,15 +4,10 @@ export function fillArrayWithNumbers(n: number) {
 	return Array.from({ length: n }, (_, i) => i + 1);
 }
 
-const getNutrientValInMg = (total: number, unit: string) => {
-	if (unit === 'mg') {
-		return Math.floor(total);
-	} else if (unit === 'g') {
-		return Math.floor(total * 1000);
-	} else {
-		return Number((total / 1000).toFixed(3));
-	}
-};
+const getNutrientValInMg = (total: number, unit: string) =>
+	Math.floor(
+		unit === 'mg' ? total : unit === 'g' ? total * 1000 : total / 1000
+	);
 
 export function formatChartData(nutritionArr: Nutrients[]) {
 	return nutritionArr.map(nutrient => {
