@@ -11,19 +11,19 @@ const StyledRecipeDetails = styled.div`
 		margin-block-end: 1em;
 	}
 	& > .main__content {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
+		margin-block-end: 2rem;
 
 		& .main__img {
 			aspect-ratio: 1/1;
 			border-radius: 1.5em;
 			box-shadow: var(--shadow-elevation-low);
+			margin-inline: auto;
 		}
 		& .main__text {
 			display: flex;
 			flex-direction: column;
 			gap: 0.5rem;
+			margin-inline: auto;
 
 			& > div {
 				display: flex;
@@ -52,10 +52,17 @@ const StyledRecipeDetails = styled.div`
 		}
 	}
 
-	@container (min-width:700px) {
+	@container (min-width:500px) {
 		.main__content {
+			display: flex;
 			flex-direction: row;
 			gap: 3rem;
+		}
+
+		& .row {
+			display: flex;
+			gap: 3rem;
+			padding-inline-start: 5rem;
 		}
 	}
 `;
@@ -108,13 +115,13 @@ const RecipeDetails = ({ recipe }: { recipe: Recipe }) => {
 					</div>
 				</div>
 			</div>
-			<div>
+			<div className='row'>
 				<div>
 					<h3 className='sub__heading'>Ingredients:</h3>
 					{ingredientLines ? (
 						<ul>
 							{ingredientLines.map((ingredient, idx) => (
-								<li>{ingredient} </li>
+								<li key={idx}>{ingredient} </li>
 							))}
 						</ul>
 					) : (
@@ -124,7 +131,11 @@ const RecipeDetails = ({ recipe }: { recipe: Recipe }) => {
 				<div>
 					<h3 className='sub__heading'>Instructions:</h3>
 					{instructions ? (
-						<div className='main__text'></div>
+						<ul>
+							{instructions.map((instruction, idx) => (
+								<li key={idx}>{instruction} </li>
+							))}
+						</ul>
 					) : (
 						<p>Recipe instructions are unavailable</p>
 					)}

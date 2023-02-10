@@ -9,6 +9,7 @@ import { useInput, useInputActions } from '@store/searchInput.slice';
 import fetchNextRecipes from '@queries/fetchNextRecipes';
 import Filters from '@components/filters/Filters';
 import styled from '@emotion/styled';
+import { queryClient } from 'src/App';
 
 const StyledRecipesPage = styled.div`
 	& > * {
@@ -29,10 +30,11 @@ const StyledRecipesPage = styled.div`
 		}
 	}
 `;
+
+type LoadedData = Awaited<ReturnType<ReturnType<typeof loadRecipes>>>;
+
 const Recipes = () => {
-	const data = useLoaderData() as Awaited<
-		ReturnType<ReturnType<typeof loadRecipes>>
-	>;
+	const data = useLoaderData() as LoadedData;
 	let [searchParams, setSearchParams] = useSearchParams();
 	const { updateTotalRecipes } = usePaginationActions();
 
@@ -66,13 +68,13 @@ const RecipesQuery = (searchTerm: string, page = 1, filters: string[][]) => {
 	return {
 		queryKey: ['recipes', { searchTerm, page }],
 		queryFn: async () => {
-			// if (page > 1) {
-			// 	const prevPageData = queryClient.getQueryData([
-			// 		'recipes',
-			// 		{ searchTerm, page: page - 1 },
-			// 	]);
-			// 	return fetchNextRecipes(prevPageData._links.next.href);
-			// }
+			if (page > 1) {
+				const prevPageData: any = queryClient.getQueryData([
+					'recipes',
+					{ searchTerm, page: page - 1 },
+				]);
+				return fetchNextRecipes(prevPageData._links.next.href);
+			}
 			return await fetchRecipes(searchTerm, filters);
 		},
 		staleTime: 5 * 60 * 1000,

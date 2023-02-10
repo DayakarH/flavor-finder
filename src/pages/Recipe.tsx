@@ -7,7 +7,11 @@ import { QueryClient } from '@tanstack/react-query';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import { formatChartData } from 'src/utils';
 
-const StyledRecipePage = styled.article``;
+const StyledRecipePage = styled.article`
+	& > * {
+		margin-block-end: 0.8rem;
+	}
+`;
 const Recipe = () => {
 	const data = useLoaderData() as Awaited<
 		ReturnType<ReturnType<typeof loadRecipe>>
