@@ -14,7 +14,6 @@ import Home from '@pages/Home';
 import Recipes, { loadRecipes } from '@pages/Recipes';
 import NotFound from '@pages/NotFound';
 import Recipe, { loadRecipe } from '@pages/Recipe';
-import FilteredRecipes, { loadFilteredRecipes } from '@pages/Filtered-Recipes';
 
 export const queryClient = new QueryClient();
 
