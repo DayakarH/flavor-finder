@@ -6,6 +6,7 @@ const StyledLoadingSpinner = styled.div`
 	width: 100px;
 	height: 100px;
 	margin-inline: auto;
+	margin-block-start: 7rem;
 	border-radius: 50%;
 	background: conic-gradient(#3dffc9, #f7c723, #eb0ea5, #3dffc9);
 	animation: spin 1.4s linear infinite;
