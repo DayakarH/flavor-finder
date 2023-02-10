@@ -1,11 +1,5 @@
 import styled from '@emotion/styled';
-import {
-	useNavigate,
-	useSearchParams,
-	redirect,
-	Link,
-	Form,
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Recipe } from 'src/types';
 
 const StyledRecipeCard = styled.li`
@@ -15,12 +9,31 @@ const StyledRecipeCard = styled.li`
 	box-shadow: var(--shadow-elevation-low);
 	display: flex;
 	flex-direction: column;
+	gap: 0.5em;
 	justify-content: space-between;
 	container-type: inline-size;
 
-	& .main__content {
-		margin-block-end: 0.8em;
+	& a {
+		background-color: var(--button-color-primary);
+		color: var(--button-text-color);
+		box-shadow: var(--shadow-elevation-low);
+		text-align: center;
+		text-decoration: none;
+		padding: 0.5em 1em;
+		border-radius: 0.5em;
+		align-self: flex-end;
+		transition: opacity 200ms, color 200ms, scale 250ms;
 
+		:hover {
+			opacity: 0.9;
+			color: var(--heading-font-color);
+		}
+
+		:active {
+			scale: 0.95;
+		}
+	}
+	& .main__content {
 		& .recipe__thumbnail {
 			border-radius: 0.5em;
 			box-shadow: var(--shadow-elevation-low);
@@ -36,7 +49,7 @@ const StyledRecipeCard = styled.li`
 				gap: 0.2em;
 
 				li:not(:first-of-type)::before {
-					content: '. ';
+					content: ' . ';
 					font-weight: bold;
 					color: grey;
 				}
@@ -56,9 +69,6 @@ const StyledRecipeCard = styled.li`
 		}
 	}
 
-	& button {
-		box-shadow: var(--shadow-elevation-medium);
-	}
 	@container (min-width:400px) {
 		& .main__content {
 			display: flex;
@@ -115,9 +125,7 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 					))}
 				</ul>
 			</div>
-			<Link to={`recipe?name=${recipe.label}&id=${id}`} relative='path'>
-				View Full recipe
-			</Link>
+			<Link to={`recipe?name=${recipe.label}&id=${id}`}>View Full recipe</Link>
 		</StyledRecipeCard>
 	);
 };
