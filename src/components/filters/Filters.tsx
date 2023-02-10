@@ -14,6 +14,20 @@ import {
 
 //Scoped Styles
 
+const StyledDialogTrigger = styled.button`
+	all: unset;
+	cursor: pointer;
+	border-radius: var(--border-radius-button);
+	padding: 0.5em 1em;
+	font-weight: 500;
+	background-color: var(--button-color-secondary);
+	color: var(--button-text-color);
+
+	&:focus {
+		outline: 2px solid var(--button-color-secondary);
+		outline-offset: 3px;
+	}
+`;
 const StyledFiltersForm = styled(Form)`
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -86,7 +100,7 @@ const Filters = () => {
 	return (
 		<Dialog.Root>
 			<Dialog.Trigger asChild>
-				<button>Filters</button>
+				<StyledDialogTrigger>Filters</StyledDialogTrigger>
 			</Dialog.Trigger>
 			<Dialog.Portal>
 				<StyledDialogOverlay />
