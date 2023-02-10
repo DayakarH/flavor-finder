@@ -1,6 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { Cross2Icon } from '@radix-ui/react-icons';
-import './styles.css';
 import { FILTER_PARAMETERS } from '../../constants';
 import FilterList from './FilterList';
 import styled from '@emotion/styled';
@@ -13,10 +12,59 @@ import {
 	useMealFilters,
 } from '@store/filters.slice';
 
-const StyledFiltersContainer = styled(Form)`
+//Scoped Styles
+
+const StyledFiltersForm = styled(Form)`
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	overflow-y: scroll;
+	max-height: 55vh;
+
+	& .apply__filters {
+		position: absolute;
+		bottom: 3.5%;
+		right: 7%;
+	}
 `;
+
+const StyledDialogOverlay = styled(Dialog.Overlay)`
+	background-color: hsla(210, 14%, 83%, 0.7);
+	position: fixed;
+	inset: 0;
+	animation: var(--animation-overlayShow) 300ms cubic-bezier(0.16, 1, 0.3, 1);
+`;
+
+const StyledDialogContent = styled(Dialog.Content)`
+	background-color: white;
+	border-radius: 1em;
+	box-shadow: var(--shadow-elevation-medium);
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 90vw;
+	max-width: 1100px;
+	min-height: 85vh;
+	padding: 25px;
+	animation: var(--contentShow) 300ms cubic-bezier(0.16, 1, 0.3, 1);
+`;
+
+const StyledDialogClose = styled.button`
+	cursor: pointer;
+	border-radius: 50%;
+	height: 25px;
+	width: 25px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: black;
+	position: absolute;
+	top: 25px;
+	right: 25px;
+`;
+
+//Component
+
 const Filters = () => {
 	const diet = useDietFilters();
 	const mealType = useMealFilters();
@@ -38,16 +86,16 @@ const Filters = () => {
 	return (
 		<Dialog.Root>
 			<Dialog.Trigger asChild>
-				<button className='Button'>Filters</button>
+				<button>Filters</button>
 			</Dialog.Trigger>
 			<Dialog.Portal>
-				<Dialog.Overlay className='DialogOverlay' />
-				<Dialog.Content className='DialogContent'>
-					<Dialog.Title className='DialogTitle'>Filters:</Dialog.Title>
-					<Dialog.Description className='DialogDescription'>
+				<StyledDialogOverlay />
+				<StyledDialogContent>
+					<Dialog.Title>Filters:</Dialog.Title>
+					<Dialog.Description style={{ marginBlockEnd: '.8rem' }}>
 						Select your desired filters and click apply to get relevant results.
 					</Dialog.Description>
-					<StyledFiltersContainer method='get'>
+					<StyledFiltersForm method='get'>
 						{Array.from(FILTER_PARAMETERS.entries()).map(
 							([filterMetaData, filters]) => (
 								<FilterList
@@ -58,26 +106,18 @@ const Filters = () => {
 								/>
 							)
 						)}
-						<div
-							style={{
-								display: 'flex',
-								marginTop: 25,
-								justifyContent: 'flex-end',
-							}}
-						>
+						<div className='apply__filters'>
 							<Dialog.Close asChild>
-								<button className='Button green' onClick={handleClick}>
-									Apply
-								</button>
+								<button onClick={handleClick}>Apply</button>
 							</Dialog.Close>
 						</div>
-					</StyledFiltersContainer>
+					</StyledFiltersForm>
 					<Dialog.Close asChild>
-						<button className='IconButton' aria-label='Close'>
+						<StyledDialogClose aria-label='Close'>
 							<Cross2Icon />
-						</button>
+						</StyledDialogClose>
 					</Dialog.Close>
-				</Dialog.Content>
+				</StyledDialogContent>
 			</Dialog.Portal>
 		</Dialog.Root>
 	);

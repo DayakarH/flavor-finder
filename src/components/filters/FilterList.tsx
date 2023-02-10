@@ -21,6 +21,7 @@ const StyledFilter = styled.li`
 	}
 	& > label {
 		font-weight: 400;
+		text-transform: capitalize;
 	}
 `;
 

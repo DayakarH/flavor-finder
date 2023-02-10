@@ -10,6 +10,7 @@ import fetchNextRecipes from '@queries/fetchNextRecipes';
 import Filters from '@components/filters/Filters';
 import styled from '@emotion/styled';
 import { queryClient } from 'src/App';
+import { ChevronLeftIcon } from '@radix-ui/react-icons';
 
 const StyledRecipesPage = styled.div`
 	& > * {
@@ -21,12 +22,17 @@ const StyledRecipesPage = styled.div`
 		justify-content: space-between;
 
 		a {
+			display: flex;
+			gap: 0.4em;
+			align-items: center;
 			background-color: var(--button-color-primary);
 			text-decoration: none;
 			padding: 0.5em 1em;
 			color: var(--button-text-color);
-
 			border-radius: var(--border-radius-button);
+			svg {
+				display: inline;
+			}
 		}
 	}
 `;
@@ -55,7 +61,10 @@ const Recipes = () => {
 	return (
 		<StyledRecipesPage className='container'>
 			<div className='flex'>
-				<Link to='/'>Back to Search</Link>
+				<Link to='/'>
+					<ChevronLeftIcon />
+					Back to Search
+				</Link>
 				<Filters />
 			</div>
 			<RecipesList recipes={data.hits} />
