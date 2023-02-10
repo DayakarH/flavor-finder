@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Recipe } from 'src/types';
+import RecipeTags from './Recipe-Tags';
 
 const StyledRecipeDetails = styled.div`
 	container-type: inline-size;
@@ -7,6 +8,7 @@ const StyledRecipeDetails = styled.div`
 	& > header {
 		font-family: var(--heading-font, sans-serif);
 		font-size: clamp(1.5rem, calc(0.78rem + 2.87vw), 2rem);
+		text-transform: capitalize;
 		text-align: center;
 		margin-block-end: 1em;
 	}
@@ -72,12 +74,12 @@ const RecipeDetails = ({ recipe }: { recipe: Recipe }) => {
 		label,
 		images,
 		ingredientLines,
-		instructions,
 		yield: servings,
 		dietLabels,
 		healthLabels,
 		mealType,
 		cuisineType,
+		url,
 	} = recipe;
 
 	return (
@@ -103,11 +105,7 @@ const RecipeDetails = ({ recipe }: { recipe: Recipe }) => {
 					</div>
 					<div>
 						<h3 className='sub__heading'>Tags:</h3>
-						<ul className='labels'>
-							{[...dietLabels, ...healthLabels].map((label, idx) => (
-								<li key={idx}>{label}</li>
-							))}
-						</ul>
+						<RecipeTags labels={[...dietLabels, ...healthLabels]} />
 					</div>
 					<div>
 						<h3>Serves:</h3>
@@ -130,12 +128,13 @@ const RecipeDetails = ({ recipe }: { recipe: Recipe }) => {
 				</div>
 				<div>
 					<h3 className='sub__heading'>Instructions:</h3>
-					{instructions ? (
-						<ul>
-							{instructions.map((instruction, idx) => (
-								<li key={idx}>{instruction} </li>
-							))}
-						</ul>
+					{url ? (
+						<p>
+							You can find them{' '}
+							<a href={url} target='_blank'>
+								here.
+							</a>
+						</p>
 					) : (
 						<p>Recipe instructions are unavailable</p>
 					)}

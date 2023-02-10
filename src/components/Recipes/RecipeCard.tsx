@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { Recipe } from 'src/types';
+import RecipeTags from './Recipe-Tags';
 
 const StyledRecipeCard = styled.li`
 	background-color: var(--card-background-color);
@@ -41,18 +42,6 @@ const StyledRecipeCard = styled.li`
 		& .recipe__text {
 			h2 {
 				font-family: var(--heading-font);
-			}
-			& ul {
-				list-style: none;
-				display: flex;
-				flex-wrap: wrap;
-				gap: 0.2em;
-
-				li:not(:first-of-type)::before {
-					content: ' . ';
-					font-weight: bold;
-					color: grey;
-				}
 			}
 		}
 	}
@@ -96,13 +85,7 @@ const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
 				/>
 				<div className='recipe__text'>
 					<h2>{recipe.label}</h2>
-					<ul>
-						{[...recipe.dietLabels, ...recipe.healthLabels].map(
-							(label, idx) => (
-								<li key={idx}>{label}</li>
-							)
-						)}
-					</ul>
+					<RecipeTags labels={[...recipe.dietLabels, ...recipe.healthLabels]} />
 				</div>
 			</div>
 			<div className='nutrition__overview'>
