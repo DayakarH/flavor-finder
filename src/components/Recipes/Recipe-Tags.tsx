@@ -4,9 +4,10 @@ const StyledTags = styled.ul`
 	display: flex;
 	flex-wrap: wrap;
 	list-style: none;
+	gap: 0.2em;
 
 	li:not(:first-of-type)::before {
-		content: ' . ';
+		content: '. ';
 		font-weight: bold;
 		color: grey;
 	}
