@@ -30,11 +30,11 @@ const StyledMainLockup = styled(motion.main)`
 					width: 100%;
 					background-color: transparent;
 					border: none;
-					border-bottom: 1.5px solid var(--button-primary);
+					border-bottom: 1.5px solid var(--button-color-primary);
 
 					&:focus {
 						outline: 2px solid var(--color-primary);
-						outline-offset: 5px;
+						outline-offset: 3px;
 					}
 				}
 			}
