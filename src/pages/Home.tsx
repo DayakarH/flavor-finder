@@ -8,6 +8,7 @@ import Filters from '@components/filters/Filters';
 
 const StyledMainLockup = styled(motion.main)`
 	container-type: inline-size;
+	padding-block-start: 2rem;
 	& .main__text {
 		& h1 {
 			font-family: var(--heading-font, sans-serif);

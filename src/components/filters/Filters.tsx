@@ -109,7 +109,7 @@ const Filters = () => {
 					<Dialog.Description style={{ marginBlockEnd: '.8rem' }}>
 						Select your desired filters and click apply to get relevant results.
 					</Dialog.Description>
-					<StyledFiltersForm method='get'>
+					<StyledFiltersForm method='get' action='recipes/?filters'>
 						{Array.from(FILTER_PARAMETERS.entries()).map(
 							([filterMetaData, filters]) => (
 								<FilterList

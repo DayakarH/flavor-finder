@@ -1,6 +1,12 @@
 import { QueryClient } from '@tanstack/react-query';
-import { useEffect } from 'react';
-import { Link, useLoaderData, useSearchParams } from 'react-router-dom';
+import { Suspense, useEffect } from 'react';
+import {
+	Link,
+	useLoaderData,
+	useSearchParams,
+	defer,
+	Await,
+} from 'react-router-dom';
 import Pagination from '@components/Recipes/Pagination';
 import RecipesList from '@components/Recipes/RecipesList';
 import fetchRecipes from '@queries/fetchRecipes';
@@ -11,6 +17,7 @@ import Filters from '@components/filters/Filters';
 import styled from '@emotion/styled';
 import { queryClient } from 'src/App';
 import { ChevronLeftIcon } from '@radix-ui/react-icons';
+import LoadingSpinner from '@components/UI/Loading-Spinner';
 
 const StyledRecipesPage = styled.div`
 	& > * {
@@ -40,7 +47,8 @@ const StyledRecipesPage = styled.div`
 type LoadedData = Awaited<ReturnType<ReturnType<typeof loadRecipes>>>;
 
 const Recipes = () => {
-	const data = useLoaderData() as LoadedData;
+	const data = useLoaderData() as any;
+	console.log(data);
 	let [searchParams, setSearchParams] = useSearchParams();
 	const { updateTotalRecipes } = usePaginationActions();
 
@@ -56,7 +64,7 @@ const Recipes = () => {
 			page: String(currentPage),
 		};
 		setSearchParams(params);
-	}, [currentPage, userInput, data.count]);
+	}, [currentPage, userInput, data.recipesData.count]);
 
 	return (
 		<StyledRecipesPage className='container'>
@@ -67,8 +75,19 @@ const Recipes = () => {
 				</Link>
 				<Filters />
 			</div>
-			<RecipesList recipes={data.hits} />
-			<Pagination />
+			<Suspense fallback={<LoadingSpinner />}>
+				<Await
+					resolve={data.recipesData}
+					errorElement={<p>Error loading recipes</p>}
+				>
+					{recipesData => (
+						<>
+							<RecipesList recipes={recipesData.hits} />
+							<Pagination />
+						</>
+					)}
+				</Await>
+			</Suspense>
 		</StyledRecipesPage>
 	);
 };
@@ -93,7 +112,7 @@ const RecipesQuery = (searchTerm: string, page = 1, filters: string[][]) => {
 
 export const loadRecipes =
 	(queryClient: QueryClient) =>
-	async ({ request }: { request: Request }) => {
+	({ request }: { request: Request }) => {
 		const url = new URL(request.url);
 		let searchTerm = url.searchParams.get('search') as string;
 		let page = url.searchParams.get('page') as string;
@@ -109,10 +128,11 @@ export const loadRecipes =
 			cuisineType,
 			dishType,
 		]);
-		return (
-			queryClient.getQueryData(query.queryKey) ??
-			(await queryClient.fetchQuery(query))
-		);
+		return defer({
+			recipesData:
+				queryClient.getQueryData(query.queryKey) ??
+				queryClient.fetchQuery(query),
+		});
 	};
 
 export default Recipes;

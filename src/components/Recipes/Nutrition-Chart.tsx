@@ -3,12 +3,16 @@ import React, { useRef, useLayoutEffect } from 'react';
 import * as am5 from '@amcharts/amcharts5';
 import * as am5xy from '@amcharts/amcharts5/xy';
 import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
+import { formatChartData } from 'src/utils';
+import { Nutrients } from 'src/types';
 
-type dataField = {
-	nutrient: string;
-	value: number;
+type ComponentProps = {
+	chartData: Nutrients[];
 };
-const NutritionChart = ({ data }: { data: dataField[] }) => {
+
+const NutritionChart = ({ chartData }: ComponentProps) => {
+	const data = formatChartData(chartData);
+
 	useLayoutEffect(() => {
 		let root = am5.Root.new('chartdiv');
 
