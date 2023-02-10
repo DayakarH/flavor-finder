@@ -58,14 +58,39 @@ li {
 }
 
 :root {
-	--color-primary: hsl(355, 78%, 56%);
-	--site-background: #f8f5f2;
+	/* --color-primary: #ff8906; */
+	/* --site-background: hsl(247, 24%, 7%); */
 	--powder-blue: #fffffe;
 	--celadon-blue: hsla(203, 39%, 44%, 1);
-	--prussian-blue: #e53170;
+	/* --prussian-blue: #e53170; */
+
+	--prussian-blue: hsla(201, 100%, 14%, 1);
+	--color-primary: hsla(348, 42%, 30%, 1);
+	/* --heading-font-color: hsla(0, 69%, 50%, 1); */
+	--flame: hsla(18, 84%, 49%, 1);
+	--orange-wheel: hsla(31, 100%, 48%, 1);
+	--orange-peel: hsla(34, 96%, 56%, 1);
+	--xanthous: #fcc14a;
+	/* : hsla(42, 83%, 73%, 1); */
+	/* --site-background: hsla(51, 55%, 82%, 1); */
+
+	--rusty-red: hsla(355, 63%, 51%, 1);
+	--button-color-primary: hsla(355, 78%, 56%, 1);
+	--button-color-secondary: hsla(203, 39%, 44%, 1);
+	--button-text-color: whitesmoke;
+	--salmon-pink: hsla(0, 68%, 76%, 1);
+	--site-background: hsla(105, 55%, 96%, 1);
+	--card-background-color: hsla(170, 41%, 86%, 1);
+	--non-photo-blue: hsla(182, 43%, 76%, 1);
+	--moonstone: hsla(195, 35%, 60%, 1);
+	--text-color: hsla(208, 43%, 34%, 1);
+	--heading-font-color: hsla(215, 50%, 23%, 1);
+
 	--heading-font: 'Cabinet Grotesk';
 	--text-font: 'Satoshi';
-	--shadow-color: 31deg 9% 54%;
+	--border-radius-button: 1.25em;
+
+	--shadow-color: 106deg 17% 53%;
 	--shadow-elevation-low: 0.3px 0.5px 0.6px hsl(var(--shadow-color) / 0.58),
 		0.4px 0.8px 0.9px -1.7px hsl(var(--shadow-color) / 0.47),
 		1.1px 2.2px 2.4px -3.5px hsl(var(--shadow-color) / 0.36);
@@ -86,6 +111,7 @@ li {
 body {
 	background-color: var(--site-background);
 	font-family: var(--text-font, sans-serif);
+	color: var(--text-color);
 }
 
 .container {

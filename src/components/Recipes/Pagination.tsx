@@ -13,10 +13,11 @@ const StyledPagination = styled.nav`
 		& li {
 			& button {
 				all: unset;
-				background: blue;
-				padding: 0.2em 0.4em;
+				background-color: var(--button-color-primary);
+				padding: 0.5em 1em;
 				cursor: pointer;
-				color: white;
+				color: var(--button-text-color);
+				border-radius: 0.8em;
 			}
 		}
 	}

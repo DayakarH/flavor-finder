@@ -41,10 +41,9 @@ const StyledNavList = styled(motion.ul)<NavList>`
 			text-decoration: none;
 			display: block;
 			width: 100%;
-			text-decoration: none;
 			position: relative;
-			text-transform: capitalize;
-			color: #078080;
+			color: var(--button-primary);
+			font-size: var(--18px);
 		}
 		a.active::before,
 		a::before {

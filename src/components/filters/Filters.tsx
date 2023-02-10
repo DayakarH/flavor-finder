@@ -38,7 +38,7 @@ const Filters = () => {
 	return (
 		<Dialog.Root>
 			<Dialog.Trigger asChild>
-				<button>Filters</button>
+				<button className='Button'>Filters</button>
 			</Dialog.Trigger>
 			<Dialog.Portal>
 				<Dialog.Overlay className='DialogOverlay' />

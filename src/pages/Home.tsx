@@ -11,27 +11,42 @@ const StyledMainLockup = styled(motion.main)`
 	& .main__text {
 		& h1 {
 			font-family: var(--heading-font, sans-serif);
+			color: var(--heading-font-color, red);
 			margin-block-end: 2rem;
 			font-size: clamp(1.35rem, calc(0.78rem + 2.87vw), 3rem);
 		}
 		& form {
 			display: flex;
+			flex-wrap: wrap;
+			gap: 0.7em;
 
 			& > .form__group {
-				flex: 1;
 				display: flex;
+				flex-basis: 180px;
+				flex-shrink: 0;
 
 				& > input {
 					outline: none;
 					width: 100%;
+					background-color: transparent;
+					border: none;
+					border-bottom: 1.5px solid var(--button-primary);
+
+					&:focus {
+						outline: 2px solid var(--color-primary);
+						outline-offset: 5px;
+					}
 				}
 			}
 			& button {
 				all: unset;
-				background-color: #078080;
-				color: #232323;
+				background-color: var(--button-color-primary);
+				border-radius: 1.25rem;
+				color: var(--button-text-color);
 				font-weight: bold;
 				padding: 0.5em 1em;
+				cursor: pointer;
+				text-align: center;
 			}
 		}
 		& p {
@@ -52,7 +67,7 @@ const StyledMainLockup = styled(motion.main)`
 	@container (min-width: 600px) {
 		& > div {
 			display: flex;
-			gap: 3em;
+			gap: 2em;
 
 			& > .main__text {
 				width: 100%;

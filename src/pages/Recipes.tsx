@@ -18,6 +18,15 @@ const StyledRecipesPage = styled.div`
 	& .flex {
 		display: flex;
 		justify-content: space-between;
+
+		a {
+			background-color: var(--button-color-primary);
+			text-decoration: none;
+			padding: 0.5em 1em;
+			color: var(--button-text-color);
+
+			border-radius: var(--border-radius-button);
+		}
 	}
 `;
 const Recipes = () => {

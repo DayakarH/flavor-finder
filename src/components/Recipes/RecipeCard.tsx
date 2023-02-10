@@ -9,7 +9,7 @@ import {
 import { Recipe } from 'src/types';
 
 const StyledRecipeCard = styled.li`
-	background-color: #fffffe;
+	background-color: var(--card-background-color);
 	padding: 0.5em;
 	border-radius: 1em;
 	box-shadow: var(--shadow-elevation-low);
