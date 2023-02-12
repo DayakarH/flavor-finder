@@ -96,6 +96,7 @@ li {
 
 	--animation-overlayShow: overlayShow;
 	--animation-contentShow: contentShow;
+	--animation-oscillate: oscillate;
 }
 
 body {
@@ -137,5 +138,19 @@ body {
 	to {
 		opacity: 1;
 		transform: translate(-50%, -50%) scale(1);
+	}
+}
+
+@keyframes oscillate {
+	0%,
+	50%,
+	100% {
+		transform: rotate(0);
+	}
+	25% {
+		transform: rotate(-0.15turn);
+	}
+	75% {
+		transform: rotate(0.15turn);
 	}
 }

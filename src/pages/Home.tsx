@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import heroImg from '../assets/hero-img.svg';
 import { useInput, useInputActions } from '../store/searchInput.slice';
 import { FormEvent } from 'react';
-import Filters from '@components/filters/Filters';
 
 const StyledMainLockup = styled(motion.main)`
 	container-type: inline-size;
@@ -15,6 +14,11 @@ const StyledMainLockup = styled(motion.main)`
 			color: var(--heading-font-color, red);
 			margin-block-end: 2rem;
 			font-size: clamp(1.35rem, calc(0.78rem + 2.87vw), 3rem);
+
+			& span {
+				display: inline-block;
+				animation: var(--animation-oscillate) 0.25s ease 2s 2;
+			}
 		}
 		& form {
 			display: flex;
@@ -112,9 +116,6 @@ const pageVariants = {
 		opacity: 1,
 		x: 0,
 	},
-	out: {
-		y: '-100vh',
-	},
 };
 
 const pageTransition = {
@@ -126,24 +127,42 @@ const pageTransition = {
 	damping: 20,
 };
 
+const LogoVariants = {
+	initial: {
+		rotate: 0,
+	},
+	in: {
+		rotate: 10,
+	},
+};
+
+const LogoTransition = {
+	duration: 0.25,
+	type: 'spring',
+	delay: 2.5,
+	yoyo: 5,
+};
 const Home = () => {
 	const input = useInput();
 	const actions = useInputActions();
 
-	const handleInputChange = (evt: FormEvent<HTMLInputElement>) =>
+	const handleInputChange = (evt: FormEvent<HTMLInputElement>) => {
 		actions.update(evt.currentTarget.value);
+	};
 	return (
 		<StyledMainLockup
-			// initial='initial'
-			// animate='in'
-			// exit='out'
-			// variants={pageVariants}
-			// transition={pageTransition}
+			initial='initial'
+			animate='in'
+			variants={pageVariants}
+			transition={pageTransition}
 			className='container'
 		>
 			<div>
 				<div className='main__text'>
-					<h1>What are you craving?</h1>
+					<h1>
+						What are you craving
+						<span>?</span>
+					</h1>
 					<Form method='get' action='/recipes'>
 						<div className='form__group'>
 							<label className='visually-hidden'>Search:</label>

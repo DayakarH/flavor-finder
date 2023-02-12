@@ -18,8 +18,9 @@ import styled from '@emotion/styled';
 import { queryClient } from 'src/App';
 import { ChevronLeftIcon } from '@radix-ui/react-icons';
 import LoadingSpinner from '@components/UI/Loading-Spinner';
+import { motion } from 'framer-motion';
 
-const StyledRecipesPage = styled.div`
+const StyledRecipesPage = styled(motion.div)`
 	& > * {
 		margin-block-end: 0.8rem;
 		padding-block: 1em;
@@ -44,20 +45,39 @@ const StyledRecipesPage = styled.div`
 	}
 `;
 
+const pageVariants = {
+	initial: {
+		opacity: 0,
+		x: '100vw',
+	},
+	in: {
+		opacity: 1,
+		x: 0,
+	},
+};
+
+const pageTransition = {
+	ease: 'easeOut',
+	duration: 0.5,
+	type: 'spring',
+	bounce: 0.7,
+	stiffness: 70,
+	damping: 20,
+};
 type LoadedData = Awaited<ReturnType<ReturnType<typeof loadRecipes>>>;
 
 const Recipes = () => {
 	const data = useLoaderData() as any;
-	console.log(data);
 	let [searchParams, setSearchParams] = useSearchParams();
-	const { updateTotalRecipes } = usePaginationActions();
 
 	const userInput = useInput();
 	const actions = useInputActions();
 	const currentPage = useCurrentPage();
 
+	const handleFilters = () => {
+		loadRecipes(queryClient);
+	};
 	useEffect(() => {
-		updateTotalRecipes(data.count);
 		actions.update(searchParams.get('search') as string);
 		const params = {
 			search: userInput,
@@ -67,13 +87,19 @@ const Recipes = () => {
 	}, [currentPage, userInput, data.recipesData.count]);
 
 	return (
-		<StyledRecipesPage className='container'>
+		<StyledRecipesPage
+			initial='initial'
+			animate='in'
+			variants={pageVariants}
+			transition={pageTransition}
+			className='container'
+		>
 			<div className='flex'>
 				<Link to='/'>
 					<ChevronLeftIcon />
 					Back to Search
 				</Link>
-				<Filters />
+				<Filters onFiltering={handleFilters} />
 			</div>
 			<Suspense fallback={<LoadingSpinner />}>
 				<Await
@@ -83,7 +109,7 @@ const Recipes = () => {
 					{recipesData => (
 						<>
 							<RecipesList recipes={recipesData.hits} />
-							<Pagination />
+							<Pagination count={recipesData.count} />
 						</>
 					)}
 				</Await>
@@ -92,15 +118,16 @@ const Recipes = () => {
 	);
 };
 
-const RecipesQuery = (searchTerm: string, page = 1, filters: string[][]) => {
+const RecipesQuery = (searchTerm: string, filters: string[][], page = 1) => {
 	return {
-		queryKey: ['recipes', { searchTerm, page }],
+		queryKey: ['recipes', { searchTerm, filters, page }],
 		queryFn: async () => {
 			if (page > 1) {
 				const prevPageData: any = queryClient.getQueryData([
 					'recipes',
-					{ searchTerm, page: page - 1 },
+					{ searchTerm, filters, page: page - 1 },
 				]);
+				console.log(prevPageData);
 				return fetchNextRecipes(prevPageData._links.next.href);
 			}
 			return await fetchRecipes(searchTerm, filters);
@@ -121,13 +148,11 @@ export const loadRecipes =
 		let health = url.searchParams.getAll('health');
 		let cuisineType = url.searchParams.getAll('cuisineType');
 		let dishType = url.searchParams.getAll('dishType');
-		const query = RecipesQuery(searchTerm, Number(page), [
-			diet,
-			mealType,
-			health,
-			cuisineType,
-			dishType,
-		]);
+		const query = RecipesQuery(
+			searchTerm,
+			[diet, mealType, health, cuisineType, dishType],
+			Number(page)
+		);
 		return defer({
 			recipesData:
 				queryClient.getQueryData(query.queryKey) ??
