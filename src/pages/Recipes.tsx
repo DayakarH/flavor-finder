@@ -99,7 +99,7 @@ const Recipes = () => {
 					<ChevronLeftIcon />
 					Back to Search
 				</Link>
-				<Filters onFiltering={handleFilters} />
+				<Filters />
 			</div>
 			<Suspense fallback={<LoadingSpinner />}>
 				<Await

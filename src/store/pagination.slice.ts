@@ -20,7 +20,7 @@ const usePaginationStore = create<PaginationState>()(set => ({
 	actions: {
 		updateTotalRecipes: recipes =>
 			set(state => ({
-				totalPages: recipes,
+				totalPages: Math.ceil(recipes / state.recipesPerPage),
 			})),
 		updateCurrentPage: pageNum => set({ currentPage: pageNum }),
 	},

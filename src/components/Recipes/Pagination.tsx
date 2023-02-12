@@ -29,7 +29,7 @@ const StyledPagination = styled.nav`
 
 const PAGINATION_LIMIT = 5;
 
-const Pagination = ({ count }) => {
+const Pagination = ({ count }: { count: number }) => {
 	const currentPage = useCurrentPage();
 	const totalPages = useTotalPages();
 	const { updateTotalRecipes } = usePaginationActions();
@@ -58,17 +58,6 @@ const Pagination = ({ count }) => {
 	return (
 		<StyledPagination>
 			<ul>
-				{startPage < currentPage && (
-					<>
-						<li>
-							<button>Prev</button>
-						</li>
-						<li>
-							<button>First</button>
-						</li>
-					</>
-				)}
-
 				{pages.map(num => (
 					<li key={num}>
 						<button value={num} onClick={handlePageChange}>
@@ -76,17 +65,6 @@ const Pagination = ({ count }) => {
 						</button>
 					</li>
 				))}
-
-				{endPage < totalPages && (
-					<>
-						<li>
-							<button>Next</button>
-						</li>
-						<li>
-							<button>Last</button>
-						</li>
-					</>
-				)}
 			</ul>
 		</StyledPagination>
 	);
