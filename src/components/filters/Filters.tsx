@@ -93,9 +93,9 @@ const Filters = () => {
 				for (let filter of filterType[1]) {
 					searchParams.append(`${filterType[0]}`, `${filter}`);
 				}
-				setSearchParams(searchParams);
 			}
 		});
+		setSearchParams(searchParams);
 	};
 	return (
 		<Dialog.Root>
@@ -109,7 +109,7 @@ const Filters = () => {
 					<Dialog.Description style={{ marginBlockEnd: '.8rem' }}>
 						Select your desired filters and click apply to get relevant results.
 					</Dialog.Description>
-					<StyledFiltersForm method='get' action='recipes/?filters'>
+					<StyledFiltersForm>
 						{Array.from(FILTER_PARAMETERS.entries()).map(
 							([filterMetaData, filters]) => (
 								<FilterList
