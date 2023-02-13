@@ -64,6 +64,14 @@ const StyledRecipeCard = styled.li`
 			gap: 0.9em;
 		}
 	}
+	@container (max-width:400px) {
+		& .recipe__thumbnail {
+			margin-inline: auto;
+		}
+		h2 {
+			text-align: center;
+		}
+	}
 `;
 
 const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
