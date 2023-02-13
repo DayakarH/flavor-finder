@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useCurrentPage } from '@store/pagination.slice';
+import { useCurrentPage, useRecipesPerPage } from '@store/pagination.slice';
 import { MouseEventHandler } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -27,7 +27,8 @@ const PAGINATION_LIMIT = 5;
 
 const Pagination = ({ count }: { count: number }) => {
 	const currentPage = useCurrentPage();
-	const totalPages = count;
+	const recipesPerPage = useRecipesPerPage();
+	const totalPages = Math.ceil(count / recipesPerPage);
 	let [, setSearchParams] = useSearchParams();
 	const startPage = Math.max(1, currentPage - Math.floor(PAGINATION_LIMIT / 2));
 	const endPage = Math.min(totalPages, startPage + PAGINATION_LIMIT - 1);
