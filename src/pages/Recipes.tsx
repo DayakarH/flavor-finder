@@ -69,7 +69,6 @@ type LoadedData = Awaited<ReturnType<ReturnType<typeof loadRecipes>>>;
 const Recipes = () => {
 	const data = useLoaderData() as any;
 	let [searchParams, setSearchParams] = useSearchParams();
-
 	const userInput = useInput();
 	const actions = useInputActions();
 	const currentPage = useCurrentPage();

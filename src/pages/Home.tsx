@@ -67,7 +67,7 @@ const StyledMainLockup = styled(motion.main)`
 				all: unset;
 				background-color: var(--button-color-primary);
 				border-radius: 1.25rem;
-				color: var(--button-text-color);
+				color: #000;
 				font-weight: bold;
 				padding: 0.5em 1em;
 				cursor: pointer;

@@ -11,7 +11,14 @@ import { Await, useLoaderData, useNavigate } from 'react-router-dom';
 
 const StyledRecipePage = styled(motion.article)`
 	& > * {
-		margin-block-end: 0.8rem;
+		margin-block-end: 1.2rem;
+	}
+	& > button {
+		border: none;
+		background-color: var(--button-color-primary);
+		padding: 0.5em 1em;
+		color: #000;
+		border-radius: var(--border-radius-button);
 	}
 `;
 const pageVariants = {
