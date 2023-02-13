@@ -100,8 +100,17 @@ const NutritionChart = ({ chartData }: ComponentProps) => {
 
 	return (
 		<>
-			<h3>Nutrition Chart: All values are in mg</h3>
-			<div id='chartdiv' style={{ width: '100%', height: '500px' }}></div>
+			<h3 style={{ marginBlockEnd: '1rem' }}>
+				Nutrition Chart: All values are in mg
+			</h3>
+			<div
+				id='chartdiv'
+				style={{
+					width: '100%',
+					height: '500px',
+					boxShadow: 'var(--shadow-elevation-low)',
+				}}
+			></div>
 		</>
 	);
 };
