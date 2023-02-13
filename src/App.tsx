@@ -25,10 +25,6 @@ const router = createBrowserRouter(
 				path='/recipes'
 				element={<Recipes />}
 				loader={loadRecipes(queryClient)}
-				action={async ({ request }) => {
-					const data = await request.formData();
-					console.log(data);
-				}}
 			/>
 			<Route
 				path='/recipes/recipe'
