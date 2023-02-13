@@ -38,6 +38,14 @@ const StyledFiltersForm = styled(Form)`
 		position: absolute;
 		bottom: 3.5%;
 		right: 7%;
+
+		& > button {
+			background-color: var(--button-color-secondary);
+			padding: 0.2em 0.4em;
+			border: none;
+			color: var(--button-text-color);
+			border-radius: 0.5em;
+		}
 	}
 `;
 
@@ -66,12 +74,14 @@ const StyledDialogContent = styled(Dialog.Content)`
 const StyledDialogClose = styled.button`
 	cursor: pointer;
 	border-radius: 50%;
+	border: none;
 	height: 25px;
 	width: 25px;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	color: black;
+	color: var(--button-text-color);
+	background-color: var(--button-color-primary);
 	position: absolute;
 	top: 25px;
 	right: 25px;
@@ -86,12 +96,12 @@ const Filters = () => {
 	const cuisineType = useCuisineFilters();
 	const dishType = useDishFilters();
 	let [searchParams, setSearchParams] = useSearchParams();
-
+	console.log(diet);
 	const handleClick = () => {
 		[diet, mealType, health, cuisineType, dishType].forEach(filterType => {
 			if (filterType[1].length) {
 				for (let filter of filterType[1]) {
-					searchParams.append(`${filterType[0]}`, `${filter}`);
+					searchParams.set(`${filterType[0]}`, `${filter}`);
 				}
 			}
 		});

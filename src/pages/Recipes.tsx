@@ -74,9 +74,6 @@ const Recipes = () => {
 	const actions = useInputActions();
 	const currentPage = useCurrentPage();
 
-	const handleFilters = () => {
-		loadRecipes(queryClient);
-	};
 	useEffect(() => {
 		actions.update(searchParams.get('search') as string);
 		const params = {
@@ -84,7 +81,7 @@ const Recipes = () => {
 			page: String(currentPage),
 		};
 		setSearchParams(params);
-	}, [currentPage, userInput, data.recipesData.count]);
+	}, [currentPage, userInput]);
 
 	return (
 		<StyledRecipesPage

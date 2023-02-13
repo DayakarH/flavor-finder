@@ -1,9 +1,5 @@
 import styled from '@emotion/styled';
-import {
-	useCurrentPage,
-	usePaginationActions,
-	useTotalPages,
-} from '@store/pagination.slice';
+import { useCurrentPage } from '@store/pagination.slice';
 import { MouseEventHandler } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
@@ -17,7 +13,7 @@ const StyledPagination = styled.nav`
 		& li {
 			& button {
 				all: unset;
-				background-color: var(--button-color-primary);
+				background-color: var(--button-color-secondary);
 				padding: 0.5em 1em;
 				cursor: pointer;
 				color: var(--button-text-color);
@@ -31,12 +27,8 @@ const PAGINATION_LIMIT = 5;
 
 const Pagination = ({ count }: { count: number }) => {
 	const currentPage = useCurrentPage();
-	const totalPages = useTotalPages();
-	const { updateTotalRecipes } = usePaginationActions();
-	updateTotalRecipes(count);
-	console.log(totalPages);
+	const totalPages = count;
 	let [, setSearchParams] = useSearchParams();
-	console.log(totalPages);
 	const startPage = Math.max(1, currentPage - Math.floor(PAGINATION_LIMIT / 2));
 	const endPage = Math.min(totalPages, startPage + PAGINATION_LIMIT - 1);
 
