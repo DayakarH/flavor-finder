@@ -124,7 +124,6 @@ const RecipesQuery = (searchTerm: string, filters: string[][], page = 1) => {
 					'recipes',
 					{ searchTerm, filters, page: page - 1 },
 				]);
-				console.log(prevPageData);
 				return fetchNextRecipes(prevPageData._links.next.href);
 			}
 			return await fetchRecipes(searchTerm, filters);

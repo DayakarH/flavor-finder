@@ -96,7 +96,6 @@ const Filters = () => {
 	const cuisineType = useCuisineFilters();
 	const dishType = useDishFilters();
 	let [searchParams, setSearchParams] = useSearchParams();
-	console.log(diet);
 	const handleClick = () => {
 		[diet, mealType, health, cuisineType, dishType].forEach(filterType => {
 			if (filterType[1].length) {
