@@ -148,9 +148,9 @@ body {
 		transform: rotate(0);
 	}
 	25% {
-		transform: rotate(-0.15turn);
+		transform: rotate(-0.07turn);
 	}
 	75% {
-		transform: rotate(0.15turn);
+		transform: rotate(0.07turn);
 	}
 }
