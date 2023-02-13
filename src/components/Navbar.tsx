@@ -42,7 +42,7 @@ const StyledNavList = styled(motion.ul)<NavList>`
 			display: block;
 			width: 100%;
 			position: relative;
-			color: var(--button-primary);
+			color: var(--heading-font-color);
 			font-size: var(--18px);
 		}
 		a.active::before,
@@ -71,7 +71,7 @@ const StyledNavList = styled(motion.ul)<NavList>`
 		justify-content: center;
 		align-items: center;
 		width: 100%;
-		background-color: var(--bottle-green);
+		background-color: var(--rusty-red);
 		z-index: 1;
 		position: fixed;
 		inset: 0;

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { MouseEventHandler, useRef } from 'react';
 
 const StyledHamburger = styled.button`
-	--button-color: var(--color-primary);
+	--button-color: hsla(215, 50%, 23%, 1);
 	overflow: hidden;
 
 	.hamburger {
@@ -30,7 +30,6 @@ type HamburgerProps = {
 };
 
 const Hamburger = ({ onClick, expanded }: HamburgerProps) => {
-	const hamburgerRef = useRef<HTMLButtonElement | null>(null);
 	return (
 		<StyledHamburger
 			aria-controls='primary-navigation'
